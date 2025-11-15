@@ -31,6 +31,99 @@
             background: var(--white);
         }
 
+        /* Skeleton Loader */
+        .skeleton-loader {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0;
+        }
+
+        .skeleton-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .skeleton-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        .skeleton-content {
+            padding: 1.5rem;
+        }
+
+        .skeleton-title {
+            height: 24px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            width: 70%;
+        }
+
+        .skeleton-description {
+            height: 16px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .skeleton-description:last-of-type {
+            width: 60%;
+        }
+
+        .skeleton-tag {
+            height: 28px;
+            width: 100px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 15px;
+            margin-top: 1rem;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .portfolio-grid {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-grid.loaded {
+            opacity: 1;
+        }
+
+        .skeleton-loader.hidden {
+            display: none;
+        }
+
         /* Header */
         header {
             background: var(--white);
@@ -146,6 +239,12 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-image img.loaded {
+            opacity: 1;
         }
 
         .portfolio-card:hover .card-image img {
@@ -362,11 +461,69 @@
             <button class="filter-btn">Websites</button>
         </div>
 
-        <div class="portfolio-grid">
+        <!-- Skeleton Loader -->
+        <div class="skeleton-loader" id="skeletonLoader">
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-tag"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-tag"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-tag"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-tag"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-tag"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-content">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-description"></div>
+                    <div class="skeleton-tag"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
             <!-- Poster Designs -->
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-1.png" alt="Poster Design 1">
+                    <img loading="lazy" data-src="resources/images/poster-1.png" alt="Poster Design 1">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Creative Poster Design</h3>
@@ -377,7 +534,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-2.png" alt="Poster Design 2">
+                    <img loading="lazy" data-src="resources/images/poster-2.png" alt="Poster Design 2">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Brand Promotion Poster</h3>
@@ -388,7 +545,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-3.png" alt="Poster Design 3">
+                    <img loading="lazy" data-src="resources/images/poster-3.png" alt="Poster Design 3">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Marketing Campaign Poster</h3>
@@ -399,7 +556,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-4.jpg" alt="Poster Design 4">
+                    <img loading="lazy" data-src="resources/images/poster-4.jpg" alt="Poster Design 4">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Product Launch Poster</h3>
@@ -410,7 +567,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-5.jpg" alt="Poster Design 5">
+                    <img loading="lazy" data-src="resources/images/poster-5.jpg" alt="Poster Design 5">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Social Media Poster</h3>
@@ -421,7 +578,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-6.jpg" alt="Poster Design 6">
+                    <img loading="lazy" data-src="resources/images/poster-6.jpg" alt="Poster Design 6">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Event Promotion Design</h3>
@@ -432,7 +589,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-7.jpg" alt="Poster Design 7">
+                    <img loading="lazy" data-src="resources/images/poster-7.jpg" alt="Poster Design 7">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Corporate Poster Design</h3>
@@ -443,7 +600,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-8.png" alt="Poster Design 8">
+                    <img loading="lazy" data-src="resources/images/poster-8.png" alt="Poster Design 8">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Digital Marketing Poster</h3>
@@ -454,7 +611,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-9.png" alt="Poster Design 9">
+                    <img loading="lazy" data-src="resources/images/poster-9.png" alt="Poster Design 9">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Brand Identity Poster</h3>
@@ -465,7 +622,7 @@
 
             <div class="portfolio-card" data-category="Poster Designs">
                 <div class="card-image">
-                    <img src="resources/images/poster-10.png" alt="Poster Design 10">
+                    <img loading="lazy" data-src="resources/images/poster-10.png" alt="Poster Design 10">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Promotional Poster</h3>
@@ -477,8 +634,8 @@
             <!-- Video Ads -->
             <div class="portfolio-card" data-category="Video Ads">
                 <div class="card-video">
-                    <video muted loop>
-                        <source src="resources/videos/ad-1.mp4" type="video/mp4">
+                    <video muted loop preload="none" data-src="resources/videos/ad-1.mp4">
+                        <source data-src="resources/videos/ad-1.mp4" type="video/mp4">
                     </video>
                     <div class="video-overlay">
                         <div class="play-icon">▶</div>
@@ -493,8 +650,8 @@
 
             <div class="portfolio-card" data-category="Video Ads">
                 <div class="card-video">
-                    <video muted loop>
-                        <source src="resources/videos/ad-2.mp4" type="video/mp4">
+                    <video muted loop preload="none" data-src="resources/videos/ad-2.mp4">
+                        <source data-src="resources/videos/ad-2.mp4" type="video/mp4">
                     </video>
                     <div class="video-overlay">
                         <div class="play-icon">▶</div>
@@ -509,8 +666,8 @@
 
             <div class="portfolio-card" data-category="Video Ads">
                 <div class="card-video">
-                    <video muted loop>
-                        <source src="resources/videos/ad-3.mp4" type="video/mp4">
+                    <video muted loop preload="none" data-src="resources/videos/ad-3.mp4">
+                        <source data-src="resources/videos/ad-3.mp4" type="video/mp4">
                     </video>
                     <div class="video-overlay">
                         <div class="play-icon">▶</div>
@@ -525,8 +682,8 @@
 
             <div class="portfolio-card" data-category="Video Ads">
                 <div class="card-video">
-                    <video muted loop>
-                        <source src="resources/videos/ad-4.mp4" type="video/mp4">
+                    <video muted loop preload="none" data-src="resources/videos/ad-4.mp4">
+                        <source data-src="resources/videos/ad-4.mp4" type="video/mp4">
                     </video>
                     <div class="video-overlay">
                         <div class="play-icon">▶</div>
@@ -543,7 +700,7 @@
             <a href="https://www.finacile.com/" target="_blank" class="website-link" data-website-index="0">
                 <div class="portfolio-card clickable" data-category="Websites">
                     <div class="card-image">
-                        <img src="resources/website/website-1.png" alt="Finacile Website">
+                        <img loading="lazy" data-src="resources/website/website-1.png" alt="Finacile Website">
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Finacile</h3>
@@ -556,7 +713,7 @@
             <a href="https://netvisionpower.in/" target="_blank" class="website-link" data-website-index="1">
                 <div class="portfolio-card clickable" data-category="Websites">
                     <div class="card-image">
-                        <img src="resources/website/website-2.png" alt="NetVision Power Website">
+                        <img loading="lazy" data-src="resources/website/website-2.png" alt="NetVision Power Website">
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">NetVision Power</h3>
@@ -569,7 +726,7 @@
             <a href="https://penquinmark.vercel.app/" target="_blank" class="website-link" data-website-index="2">
                 <div class="portfolio-card clickable" data-category="Websites">
                     <div class="card-image">
-                        <img src="resources/website/website-3.png" alt="Penquin Mark Website">
+                        <img loading="lazy" data-src="resources/website/website-3.png" alt="Penquin Mark Website">
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Penquin Mark</h3>
@@ -582,7 +739,7 @@
             <a href="https://travancore-medicals.vercel.app/" target="_blank" class="website-link" data-website-index="3">
                 <div class="portfolio-card clickable" data-category="Websites">
                     <div class="card-image">
-                        <img src="resources/website/website-4.png" alt="Travancore Medicals Website">
+                        <img loading="lazy" data-src="resources/website/website-4.png" alt="Travancore Medicals Website">
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Travancore Medicals</h3>
@@ -607,6 +764,118 @@
     </footer>
 
     <script>
+        // Lazy loading and skeleton loader
+        const skeletonLoader = document.getElementById('skeletonLoader');
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        let imagesLoaded = 0;
+        let totalImages = 0;
+
+        // Lazy load images
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            totalImages = images.length;
+            
+            if (totalImages === 0) {
+                hideSkeleton();
+                return;
+            }
+
+            function loadImage(img) {
+                const src = img.getAttribute('data-src');
+                if (!src) return;
+                
+                const imageLoader = new Image();
+                imageLoader.onload = function() {
+                    img.src = src;
+                    img.classList.add('loaded');
+                    imagesLoaded++;
+                    
+                    if (imagesLoaded === totalImages) {
+                        setTimeout(hideSkeleton, 300);
+                    }
+                };
+                imageLoader.onerror = function() {
+                    imagesLoaded++;
+                    if (imagesLoaded === totalImages) {
+                        setTimeout(hideSkeleton, 300);
+                    }
+                };
+                imageLoader.src = src;
+            }
+
+            // Load first 6 images immediately (visible ones)
+            const visibleImages = Array.from(images).slice(0, 6);
+            visibleImages.forEach(img => {
+                loadImage(img);
+            });
+
+            // Lazy load the rest
+            const remainingImages = Array.from(images).slice(6);
+            if (remainingImages.length > 0) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            loadImage(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px'
+                });
+
+                remainingImages.forEach(img => imageObserver.observe(img));
+            }
+        }
+
+        // Lazy load videos
+        function lazyLoadVideos() {
+            const videos = document.querySelectorAll('video[data-src]');
+            
+            const videoObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        const src = video.getAttribute('data-src');
+                        const source = video.querySelector('source');
+                        
+                        if (source) {
+                            source.src = src;
+                            video.load();
+                        }
+                        
+                        observer.unobserve(video);
+                    }
+                });
+            }, {
+                rootMargin: '100px'
+            });
+
+            videos.forEach(video => videoObserver.observe(video));
+        }
+
+        function hideSkeleton() {
+            if (skeletonLoader) {
+                skeletonLoader.classList.add('hidden');
+            }
+            if (portfolioGrid) {
+                portfolioGrid.classList.add('loaded');
+            }
+        }
+
+        // Initialize lazy loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start loading images immediately for visible ones
+            lazyLoadImages();
+            lazyLoadVideos();
+            
+            // Fallback: hide skeleton after 3 seconds even if images aren't loaded
+            setTimeout(() => {
+                if (!portfolioGrid.classList.contains('loaded')) {
+                    hideSkeleton();
+                }
+            }, 3000);
+        });
+
         // Category filter functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
         const portfolioCards = document.querySelectorAll('.portfolio-card');
@@ -651,7 +920,19 @@
             const video = card.querySelector('video');
             const overlay = card.querySelector('.video-overlay');
             
+            if (!video || !overlay) return;
+            
             overlay.addEventListener('click', function() {
+                // Load video if not loaded
+                if (video.getAttribute('data-src')) {
+                    const src = video.getAttribute('data-src');
+                    const source = video.querySelector('source');
+                    if (source && !source.src) {
+                        source.src = src;
+                        video.load();
+                    }
+                }
+                
                 if (video.paused) {
                     video.play();
                     overlay.style.opacity = '0';
