@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engage X - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #4A90E2;
+            --dark-blue: #2C3E50;
+            --light-blue: #F0F7FF;
+            --white: #FFFFFF;
+            --text: #333333;
+            --text-light: #666666;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--white);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+            border-radius: 25px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(74, 144, 226, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            background: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .portfolio-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-video {
+            width: 100%;
+            height: 250px;
+            background: var(--light-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover .video-overlay {
+            opacity: 0.8;
+        }
+
+        .play-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .video-overlay:hover .play-icon {
+            transform: scale(1.1);
+            background: var(--white);
+        }
+
+        .portfolio-card[data-category] {
+            display: block;
+        }
+
+        .portfolio-card.hidden {
+            display: none;
+        }
+
+        .portfolio-card.clickable {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .portfolio-card.clickable:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(74, 144, 226, 0.15);
+        }
+
+        .website-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .website-link.hidden {
+            display: none;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .card-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light-blue);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-info {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .card-image,
+            .card-video {
+                height: 220px;
+            }
+
+            .play-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio {
+                padding: 3rem 1rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">Engage X</div>
+            <p class="tagline">Digital Marketing & Business Solutions</p>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <div class="section-header">
+            <h1 class="section-title">Our Portfolio</h1>
+            <p class="section-subtitle">Showcasing our creative work and successful projects</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active">All Work</button>
+            <button class="filter-btn">Poster Designs</button>
+            <button class="filter-btn">Video Ads</button>
+            <button class="filter-btn">Websites</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Poster Designs -->
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-1.png" alt="Poster Design 1">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Creative Poster Design</h3>
+                    <p class="card-description">Eye-catching poster design for social media campaigns</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-2.png" alt="Poster Design 2">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Brand Promotion Poster</h3>
+                    <p class="card-description">Professional poster design for brand awareness</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-3.png" alt="Poster Design 3">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Marketing Campaign Poster</h3>
+                    <p class="card-description">Vibrant design for marketing campaigns</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-4.jpg" alt="Poster Design 4">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Product Launch Poster</h3>
+                    <p class="card-description">Stunning poster for product launch events</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-5.jpg" alt="Poster Design 5">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Social Media Poster</h3>
+                    <p class="card-description">Engaging poster optimized for social platforms</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-6.jpg" alt="Poster Design 6">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Event Promotion Design</h3>
+                    <p class="card-description">Creative poster for event promotion</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-7.jpg" alt="Poster Design 7">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Corporate Poster Design</h3>
+                    <p class="card-description">Professional corporate communication poster</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-8.png" alt="Poster Design 8">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Digital Marketing Poster</h3>
+                    <p class="card-description">Modern design for digital marketing campaigns</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-9.png" alt="Poster Design 9">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Brand Identity Poster</h3>
+                    <p class="card-description">Poster showcasing brand identity and values</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs">
+                <div class="card-image">
+                    <img src="resources/images/poster-10.png" alt="Poster Design 10">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Promotional Poster</h3>
+                    <p class="card-description">High-impact promotional poster design</p>
+                    <span class="card-tag">Poster Design</span>
+                </div>
+            </div>
+
+            <!-- Video Ads -->
+            <div class="portfolio-card" data-category="Video Ads">
+                <div class="card-video">
+                    <video muted loop>
+                        <source src="resources/videos/ad-1.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Social Media Video Ad</h3>
+                    <p class="card-description">Engaging video advertisement for social platforms</p>
+                    <span class="card-tag">Video Ad</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Video Ads">
+                <div class="card-video">
+                    <video muted loop>
+                        <source src="resources/videos/ad-2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Product Promotion Video</h3>
+                    <p class="card-description">Professional product promotion video ad</p>
+                    <span class="card-tag">Video Ad</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Video Ads">
+                <div class="card-video">
+                    <video muted loop>
+                        <source src="resources/videos/ad-3.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Brand Campaign Video</h3>
+                    <p class="card-description">Creative brand storytelling video advertisement</p>
+                    <span class="card-tag">Video Ad</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Video Ads">
+                <div class="card-video">
+                    <video muted loop>
+                        <source src="resources/videos/ad-4.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Commercial Video Ad</h3>
+                    <p class="card-description">High-quality commercial video advertisement</p>
+                    <span class="card-tag">Video Ad</span>
+                </div>
+            </div>
+
+            <!-- Websites -->
+            <a href="https://www.finacile.com/" target="_blank" class="website-link" data-website-index="0">
+                <div class="portfolio-card clickable" data-category="Websites">
+                    <div class="card-image">
+                        <img src="resources/website/website-1.png" alt="Finacile Website">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Finacile</h3>
+                        <p class="card-description">Professional financial services website with modern design</p>
+                        <span class="card-tag">Website</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://netvisionpower.in/" target="_blank" class="website-link" data-website-index="1">
+                <div class="portfolio-card clickable" data-category="Websites">
+                    <div class="card-image">
+                        <img src="resources/website/website-2.png" alt="NetVision Power Website">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">NetVision Power</h3>
+                        <p class="card-description">Corporate website with responsive design and CMS integration</p>
+                        <span class="card-tag">Website</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://penquinmark.vercel.app/" target="_blank" class="website-link" data-website-index="2">
+                <div class="portfolio-card clickable" data-category="Websites">
+                    <div class="card-image">
+                        <img src="resources/website/website-3.png" alt="Penquin Mark Website">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Penquin Mark</h3>
+                        <p class="card-description">Modern marketing platform with dynamic features</p>
+                        <span class="card-tag">Website</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://travancore-medicals.vercel.app/" target="_blank" class="website-link" data-website-index="3">
+                <div class="portfolio-card clickable" data-category="Websites">
+                    <div class="card-image">
+                        <img src="resources/website/website-4.png" alt="Travancore Medicals Website">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Travancore Medicals</h3>
+                        <p class="card-description">Healthcare website with online services and information portal</p>
+                        <span class="card-tag">Website</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-info">
+            <div class="contact-links">
+                <a href="mailto:info@engagexbs.in">info@engagexbs.in</a>
+                <a href="tel:+917012775897">+91 70127 75897</a>
+                <a href="http://www.engagexbs.in" target="_blank">www.engagexbs.in</a>
+            </div>
+            <p class="copyright">&copy; 2024 Engage X Business Solutions</p>
+        </div>
+    </footer>
+
+    <script>
+        // Category filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioCards = document.querySelectorAll('.portfolio-card');
+        const websiteLinks = document.querySelectorAll('.website-link');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.textContent.trim();
+                
+                portfolioCards.forEach(card => {
+                    const parentLink = card.closest('.website-link');
+                    
+                    if (filter === 'All Work') {
+                        card.classList.remove('hidden');
+                        if (parentLink) {
+                            parentLink.classList.remove('hidden');
+                        }
+                    } else {
+                        const category = card.getAttribute('data-category');
+                        if (category === filter) {
+                            card.classList.remove('hidden');
+                            if (parentLink) {
+                                parentLink.classList.remove('hidden');
+                            }
+                        } else {
+                            card.classList.add('hidden');
+                            if (parentLink) {
+                                parentLink.classList.add('hidden');
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
+        // Video play/pause functionality
+        const videoCards = document.querySelectorAll('.card-video');
+        videoCards.forEach(card => {
+            const video = card.querySelector('video');
+            const overlay = card.querySelector('.video-overlay');
+            
+            overlay.addEventListener('click', function() {
+                if (video.paused) {
+                    video.play();
+                    overlay.style.opacity = '0';
+                } else {
+                    video.pause();
+                    overlay.style.opacity = '1';
+                }
+            });
+            
+            video.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (video.paused) {
+                    video.play();
+                    overlay.style.opacity = '0';
+                } else {
+                    video.pause();
+                    overlay.style.opacity = '1';
+                }
+            });
+            
+            // Show overlay when video ends
+            video.addEventListener('ended', function() {
+                overlay.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>
