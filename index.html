@@ -233,6 +233,15 @@
             column-fill: balance;
         }
 
+        .portfolio-card,
+        .website-link {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
         .portfolio-card {
             background: var(--black);
             border-radius: 0;
@@ -240,7 +249,6 @@
             border: none;
             transition: opacity 0.4s ease, transform 0.4s ease;
             cursor: pointer;
-            width: 100%;
             padding: 10px;
         }
 
@@ -255,12 +263,14 @@
             position: relative;
             overflow: hidden;
             display: block;
+            height: 100%;
         }
 
         .card-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
+            object-fit: cover;
             transition: transform 0.5s ease, filter 0.5s ease, opacity 0.3s ease;
             opacity: 0;
             filter: grayscale(100%);
@@ -282,12 +292,14 @@
             position: relative;
             overflow: hidden;
             display: block;
+            height: 100%;
         }
 
         .card-video video {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
+            object-fit: cover;
             filter: grayscale(100%);
             transition: filter 0.5s ease, transform 0.5s ease;
         }
@@ -358,14 +370,29 @@
             box-shadow: 0 8px 16px rgba(74, 144, 226, 0.15);
         }
 
+        .portfolio-card[data-size="short"] .card-image,
+        .portfolio-card[data-size="short"] .card-video {
+            height: 240px;
+        }
+
+        .portfolio-card[data-size="medium"] .card-image,
+        .portfolio-card[data-size="medium"] .card-video {
+            height: 320px;
+        }
+
+        .portfolio-card[data-size="tall"] .card-image,
+        .portfolio-card[data-size="tall"] .card-video {
+            height: 420px;
+        }
+
+        .portfolio-card[data-size="xl"] .card-image,
+        .portfolio-card[data-size="xl"] .card-video {
+            height: 520px;
+        }
+
         .website-link {
             text-decoration: none;
             color: inherit;
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 1.5rem;
-            break-inside: avoid;
-            page-break-inside: avoid;
         }
 
         .website-link.hidden {
@@ -566,68 +593,158 @@
 
         <div class="portfolio-grid" id="portfolioGrid">
             <!-- Poster Designs -->
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="short">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-1.png" alt="Poster Design 1">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="tall">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-2.png" alt="Poster Design 2">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-3.png" alt="Poster Design 3">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="xl">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-4.jpg" alt="Poster Design 4">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-5.jpg" alt="Poster Design 5">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="short">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-6.jpg" alt="Poster Design 6">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="tall">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-7.jpg" alt="Poster Design 7">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-8.png" alt="Poster Design 8">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="xl">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-9.png" alt="Poster Design 9">
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Poster Designs">
+            <div class="portfolio-card" data-category="Poster Designs" data-size="short">
                 <div class="card-image">
                     <img loading="lazy" data-src="resources/images/poster-10.png" alt="Poster Design 10">
                 </div>
             </div>
 
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-11.jpeg" alt="Poster Design 11">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="tall">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-12.jpeg" alt="Poster Design 12">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="xl">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-13.jpeg" alt="Poster Design 13">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-14.jpeg" alt="Poster Design 14">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="short">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-15.jpeg" alt="Poster Design 15">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="tall">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-16.jpeg" alt="Poster Design 16">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-17.jpeg" alt="Poster Design 17">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="xl">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-18.jpeg" alt="Poster Design 18">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-19.jpeg" alt="Poster Design 19">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="short">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-20.jpeg" alt="Poster Design 20">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="tall">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-21.jpeg" alt="Poster Design 21">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-22.jpeg" alt="Poster Design 22">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="xl">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-23.jpeg" alt="Poster Design 23">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="medium">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-24.jpeg" alt="Poster Design 24">
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Poster Designs" data-size="tall">
+                <div class="card-image">
+                    <img loading="lazy" data-src="resources/images/poster-25.jpg" alt="Poster Design 25">
+                </div>
+            </div>
+
             <!-- Video Ads -->
-            <div class="portfolio-card" data-category="Video Ads">
+            <div class="portfolio-card" data-category="Video Ads" data-size="tall">
                 <div class="card-video">
                     <video muted loop autoplay playsinline preload="none" data-src="resources/videos/ad-1.mp4">
                         <source data-src="resources/videos/ad-1.mp4" type="video/mp4">
@@ -638,7 +755,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Video Ads">
+            <div class="portfolio-card" data-category="Video Ads" data-size="medium">
                 <div class="card-video">
                     <video muted loop autoplay playsinline preload="none" data-src="resources/videos/ad-2.mp4">
                         <source data-src="resources/videos/ad-2.mp4" type="video/mp4">
@@ -649,7 +766,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Video Ads">
+            <div class="portfolio-card" data-category="Video Ads" data-size="xl">
                 <div class="card-video">
                     <video muted loop autoplay playsinline preload="none" data-src="resources/videos/ad-3.mp4">
                         <source data-src="resources/videos/ad-3.mp4" type="video/mp4">
@@ -660,7 +777,7 @@
                 </div>
             </div>
 
-            <div class="portfolio-card" data-category="Video Ads">
+            <div class="portfolio-card" data-category="Video Ads" data-size="short">
                 <div class="card-video">
                     <video muted loop autoplay playsinline preload="none" data-src="resources/videos/ad-4.mp4">
                         <source data-src="resources/videos/ad-4.mp4" type="video/mp4">
@@ -671,9 +788,31 @@
                 </div>
             </div>
 
+            <div class="portfolio-card" data-category="Video Ads" data-size="medium">
+                <div class="card-video">
+                    <video muted loop autoplay playsinline preload="none" data-src="resources/videos/ad-5.mp4">
+                        <source data-src="resources/videos/ad-5.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" data-category="Video Ads" data-size="tall">
+                <div class="card-video">
+                    <video muted loop autoplay playsinline preload="none" data-src="resources/videos/ad-6.mp4">
+                        <source data-src="resources/videos/ad-6.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Websites -->
             <a href="https://www.finacile.com/" target="_blank" class="website-link" data-website-index="0">
-                <div class="portfolio-card clickable" data-category="Websites">
+                <div class="portfolio-card clickable" data-category="Websites" data-size="xl">
                     <div class="card-image">
                         <img loading="lazy" data-src="resources/website/website-1.png" alt="Finacile Website">
                     </div>
@@ -681,7 +820,7 @@
             </a>
 
             <a href="https://netvisionpower.in/" target="_blank" class="website-link" data-website-index="1">
-                <div class="portfolio-card clickable" data-category="Websites">
+                <div class="portfolio-card clickable" data-category="Websites" data-size="medium">
                     <div class="card-image">
                         <img loading="lazy" data-src="resources/website/website-2.png" alt="NetVision Power Website">
                     </div>
@@ -689,7 +828,7 @@
             </a>
 
             <a href="https://penquinmark.vercel.app/" target="_blank" class="website-link" data-website-index="2">
-                <div class="portfolio-card clickable" data-category="Websites">
+                <div class="portfolio-card clickable" data-category="Websites" data-size="tall">
                     <div class="card-image">
                         <img loading="lazy" data-src="resources/website/website-3.png" alt="Penquin Mark Website">
                     </div>
@@ -697,7 +836,7 @@
             </a>
 
             <a href="https://travancore-medicals.vercel.app/" target="_blank" class="website-link" data-website-index="3">
-                <div class="portfolio-card clickable" data-category="Websites">
+                <div class="portfolio-card clickable" data-category="Websites" data-size="medium">
                     <div class="card-image">
                         <img loading="lazy" data-src="resources/website/website-4.png" alt="Travancore Medicals Website">
                     </div>
@@ -711,7 +850,7 @@
         <div class="footer-info">
             <div class="contact-links">
                 <a href="mailto:info@engagexbs.in">info@engagexbs.in</a>
-                <a href="tel:+917012775897">+91 70127 75897</a>
+                <a href="tel:+917012775897">+971 54 322 0677</a>
                 <a href="http://www.engagexbs.in" target="_blank">www.engagexbs.in</a>
             </div>
             <p class="copyright">&copy; 2024 Engage X Business Solutions</p>
